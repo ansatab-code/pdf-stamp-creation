@@ -12,12 +12,12 @@ endobj
 << /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
 endobj
 5 0 obj
-<< /Length 279 >>
+<< /Length 262 >>
 stream
-BT /F1 20 Tf 55 700 Td (SOLSTISS - Example Geological Survey) Tj ET
-BT /F1 12 Tf 55 660 Td (Borehole: SONDAGE-001) Tj ET
-BT /F1 12 Tf 55 635 Td (Upload this file and enter the GESDEC stamp text.) Tj ET
-BT /F1 12 Tf 55 610 Td (The stamped PDF should appear in the preview.) Tj ET
+BT /F1 20 Tf 55 700 Td (PDF Stamping - Example Document) Tj ET
+BT /F1 12 Tf 55 660 Td (Upload this sample document.) Tj ET
+BT /F1 12 Tf 55 635 Td (Choose the stamp text and its position.) Tj ET
+BT /F1 12 Tf 55 610 Td (Then preview or download the result.) Tj ET
 endstream
 endobj
 xref
@@ -31,5 +31,5 @@ xref
 trailer
 << /Size 6 /Root 1 0 R >>
 startxref
-640
+623
 %%EOF
