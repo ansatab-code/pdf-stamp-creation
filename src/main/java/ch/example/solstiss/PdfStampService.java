@@ -60,18 +60,18 @@ public class PdfStampService {
 
             try (PDPageContentStream stream = new PDPageContentStream(
                     document, page, PDPageContentStream.AppendMode.APPEND, true, true)) {
-                stream.setNonStrokingColor(255, 255, 255);
+                stream.setNonStrokingColor(1f, 1f, 1f);
                 stream.addRect(x, y, width, height);
                 stream.fill();
 
-                stream.setStrokingColor(48, 64, 82);
+                stream.setStrokingColor(48f / 255f, 64f / 255f, 82f / 255f);
                 stream.setLineWidth(.6f);
                 stream.addRect(x, y, width, height);
                 stream.stroke();
 
                 stream.beginText();
                 stream.setFont(font, fontSize);
-                stream.setNonStrokingColor(20, 35, 50);
+                stream.setNonStrokingColor(20f / 255f, 35f / 255f, 50f / 255f);
                 stream.newLineAtOffset(x + padding, y + padding + 2);
                 stream.showText(stampText);
                 stream.endText();
