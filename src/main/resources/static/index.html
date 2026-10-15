@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>SOLSTISS · PDF Stamp Preview</title>
+<title>PDF Stamp Preview</title>
 <style>
 :root{font-family:system-ui,-apple-system,Segoe UI,sans-serif;color:#1b2940;background:#f2f5fa}
 *{box-sizing:border-box}body{margin:0}header{background:#142b45;color:white;padding:24px max(22px,calc((100% - 1180px)/2))}header small{color:#a8cadf;letter-spacing:.12em;text-transform:uppercase}h1{margin:5px 0 0;font-size:1.8rem}
 main{max-width:1180px;margin:28px auto;padding:0 20px;display:grid;grid-template-columns:340px 1fr;gap:22px}
 .panel,.preview{background:white;border:1px solid #dce4ef;border-radius:14px;box-shadow:0 4px 20px #1b29400a;padding:22px}
-label{font-weight:650;display:block;margin:18px 0 8px}input[type=file],input[type=text]{width:100%;padding:12px;border:1px solid #becbdc;border-radius:9px;background:white;font-size:15px}
+label{font-weight:650;display:block;margin:18px 0 8px}input[type=file],input[type=text],select{width:100%;padding:12px;border:1px solid #becbdc;border-radius:9px;background:white;font-size:15px}
 button,a.download{display:block;width:100%;text-align:center;background:#1267b0;color:white;border:0;border-radius:9px;padding:13px;font-weight:700;cursor:pointer;text-decoration:none;margin-top:20px}
 button:disabled{opacity:.5;cursor:wait}.hint{font-size:13px;color:#52647c;line-height:1.6}.error{color:#a3132a}.ok{color:#167347}#status{min-height:25px;font-size:14px}
 iframe{width:100%;height:73vh;border:1px solid #dce4ef;border-radius:8px;background:#f7f9fc}.preview h2{margin-top:0;font-size:1.1rem}
 @media(max-width:800px){main{grid-template-columns:1fr}iframe{height:65vh}}
 </style></head>
-<body><header><small>GESDEC · SOLSTISS · technical prototype</small><h1>PDF Stamp Preview</h1></header>
-<main><section class="panel"><h2>Stamp a PDF</h2><p class="hint">Select one PDF for one borehole. The stamp is added to the top-right of the first page. No original document is stored.</p>
+<body><header><small>PDF stamping · interactive prototype</small><h1>PDF Stamp Preview</h1></header>
+<main><section class="panel"><h2>Stamp a PDF</h2><p class="hint">Upload a PDF, choose a stamp position and preview the result. The original document is not stored.</p>
 <form id="form"><label for="file">PDF to upload</label><input type="file" id="file" name="file" accept=".pdf,application/pdf" required>
-<label for="text">Stamp content</label><input id="text" name="stampText" type="text" maxlength="100" value="GESDEC – SONDAGE-001" required>
-<p class="hint">Change this text to try different sondage identifiers. Maximum 100 characters. Unrotated, unprotected PDFs only.</p>
-<button id="submit">Apply stamp and preview</button><p id="status" role="status" aria-live="polite"></p></form>
+<label for="text">Stamp content</label><input id="text" name="stampText" type="text" maxlength="100" value="APPROVED – 12345" required>
+<p class="hint">Enter any stamp text (maximum 100 characters). Unrotated, unprotected PDFs only.</p>
+<label for="position">Stamp position</label><select id="position" name="position"><option value="TOP_RIGHT">Top right</option><option value="TOP_LEFT">Top left</option><option value="BOTTOM_RIGHT">Bottom right</option><option value="BOTTOM_LEFT">Bottom left</option><option value="CENTER">Centre</option></select><button id="submit">Apply stamp and preview</button><p id="status" role="status" aria-live="polite"></p></form>
 <a id="download" class="download" hidden>Download stamped PDF</a></section>
 <section class="preview"><h2>Result preview</h2><p class="hint" id="placeholder">Upload a PDF to display its stamped version here.</p><iframe id="viewer" title="Stamped PDF preview" hidden></iframe></section></main>
 <script>
