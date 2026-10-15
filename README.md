@@ -1,18 +1,17 @@
-# PDF Stamp Creation — SOLSTISS / GESDEC prototype
+# PDF Stamp Creation
 
-A standalone Spring Boot + Apache PDFBox application for testing PDF stamps.
+A standalone Spring Boot and Apache PDFBox application for adding a customizable text stamp to a PDF.
 
 ## Features
-- Upload a PDF locally in your browser
-- Enter any stamp text (default: `GESDEC – SONDAGE-001`)
-- Apply the stamp to the **first page, top right**
-- Preview the stamped PDF in-browser
-- Download the stamped PDF
-- A sample PDF is included in `samples/sample.pdf`
-- No database, GED, login or permanent file storage
+- Upload a PDF in the browser
+- Enter custom stamp text (default: `APPROVED – 12345`)
+- Choose a position on **the first page**: top right, top left, bottom right, bottom left or centre
+- Preview and download the stamped PDF
+- Try the included `samples/sample.pdf`
+- The application does not intentionally store uploaded PDFs
 
 ## Requirements
-- JDK 17+
+- Java 17+
 - Maven 3.9+
 
 ## Run
@@ -21,20 +20,20 @@ A standalone Spring Boot + Apache PDFBox application for testing PDF stamps.
 mvn spring-boot:run
 ```
 
-Open **http://localhost:8080** and test with `samples/sample.pdf` or another PDF.
+Open http://localhost:8080.
 
 ## API
 
-`POST /api/stamp` as `multipart/form-data`:
-- `file`: source PDF
-- `stampText`: string (for example `GESDEC – SONDAGE-001`)
+`POST /api/stamp` with `multipart/form-data`:
 
-Returns `application/pdf` stamped PDF as an attachment. Uploaded PDFs are processed in memory and are not intentionally persisted.
+| Field | Description |
+|---|---|
+| `file` | PDF file |
+| `stampText` | Text to place on the stamp |
+| `position` | `TOP_RIGHT` (default), `TOP_LEFT`, `BOTTOM_RIGHT`, `BOTTOM_LEFT`, `CENTER` |
 
-## Scope and limitations
-This is a **demonstrator**, not production-ready SOLSTISS code. For production, validate the selected sondage against project permissions and look up the sondage number server-side. Harden handling of encrypted/malformed or very large PDFs, rotated pages, PDF/A constraints, existing signatures, clipping and overlapping text. Stamping modifies PDF bytes and will invalidate existing digital signatures.
+Returns the stamped PDF. Maximum upload size is 20 MB.
 
-Stamp style: small white backing box with black text at top right of page 1. The original PDF is not stored by this demo. Maximum upload 20MB.
+## Limitations
 
-## License
-Example code for technical evaluation.
+This is a local technical demonstration, not a production-grade document processing service. Rotated pages and encrypted PDFs are not supported; the stamp is added to page 1 only. Built-in Helvetica supports limited characters. Stamping a signed PDF invalidates its existing signature. Review the preview before downloading, because a stamp may obscure existing text.
